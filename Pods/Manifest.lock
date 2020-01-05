@@ -3,12 +3,14 @@ PODS:
   - AlamofireImage (3.6.0):
     - Alamofire (~> 4.9)
   - SnapKit (5.0.1)
+  - SVProgressHUD (2.2.5)
   - SwiftLint (0.38.0)
 
 DEPENDENCIES:
   - Alamofire
   - AlamofireImage
   - SnapKit
+  - SVProgressHUD
   - SwiftLint
 
 SPEC REPOS:
@@ -16,14 +18,16 @@ SPEC REPOS:
     - Alamofire
     - AlamofireImage
     - SnapKit
+    - SVProgressHUD
     - SwiftLint
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AlamofireImage: be9963c6582d68b39e89191f64c82a7d7bf40fdd
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftLint: 4105f061f9812b214568b736dab580ab2c73a582
 
-PODFILE CHECKSUM: 1b140bbdeb3f6e762069012740aa4f4cb4229207
+PODFILE CHECKSUM: 177e783c1aed768aef6c865c6619ba1e9c4f55a1
 
 COCOAPODS: 1.5.3

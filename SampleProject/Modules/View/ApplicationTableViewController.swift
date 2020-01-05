@@ -1,5 +1,17 @@
 import UIKit
 import AlamofireImage
+import SVProgressHUD
+
+struct Strings {
+    static let alertTitle = NSLocalizedString(
+        "Technical error", comment: "Text for alert title")
+
+    static let alertMessage = NSLocalizedString(
+        "Technical error", comment: "Text for alert title")
+
+    static let okText = NSLocalizedString(
+        "OK", comment: "Text for alert title")
+}
 
 class ApplicationTableViewController: UITableViewController {
 
@@ -18,21 +30,24 @@ class ApplicationTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupView()
-        setupConstraints()
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        SVProgressHUD.show(withStatus: "Loading")
         presenter.updateView()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        SVProgressHUD.dismiss()
     }
 
     private func setupView() {
         tableView.tableFooterView = UIView()
-        tableView.register(ApplicationTableViewCell.self, forCellReuseIdentifier: ApplicationTableViewCell.cellReuseIdentifier)
-    }
-
-    private func setupConstraints() {
+        tableView.register(
+            ApplicationTableViewCell.self,
+            forCellReuseIdentifier: ApplicationTableViewCell.cellReuseIdentifier)
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -43,9 +58,11 @@ class ApplicationTableViewController: UITableViewController {
         return applicationDetail.count
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(
+        _ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: ApplicationTableViewCell.cellReuseIdentifier, for: indexPath) as? ApplicationTableViewCell else {
+            withIdentifier: ApplicationTableViewCell.cellReuseIdentifier,
+            for: indexPath) as? ApplicationTableViewCell else {
                 return UITableViewCell()
         }
         cell.update(appDetails: applicationDetail[indexPath.row])
@@ -68,5 +85,13 @@ extension ApplicationTableViewController: ApplicationPresenterToViewProtocol {
     }
 
     func showError() {
+        let alertVC = UIAlertController(
+            title: Strings.alertTitle, message: Strings.alertMessage,
+            preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: Strings.okText, style: .cancel) { (_) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alertVC.addAction(alertAction)
+        present(alertVC, animated: true, completion: nil)
     }
 }

@@ -10,6 +10,7 @@ target 'SampleProject' do
   pod 'Alamofire'
   pod 'AlamofireImage'
   pod 'SwiftLint'
+  pod 'SVProgressHUD'
   target 'SampleProjectTests' do
     inherit! :search_paths
     # Pods for testing

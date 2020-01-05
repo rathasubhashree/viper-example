@@ -9,7 +9,6 @@ class ApplicationTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
         setupView()
         setupConstraints()
     }
@@ -27,7 +26,7 @@ class ApplicationTableViewCell: UITableViewCell {
         appArtistName.text = appDetails.artistName
     }
 
-    func setupView() {
+    private func setupView() {
         contentView.addSubview(appName)
         appName.font = UIFont.boldSystemFont(ofSize: 25)
         appName.numberOfLines = 0
@@ -50,7 +49,7 @@ class ApplicationTableViewCell: UITableViewCell {
         appArtistName.numberOfLines = 0
     }
 
-    func setupConstraints() {
+    private func setupConstraints() {
         appName.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(16)
             make.leading.trailing.equalToSuperview().inset(16)
